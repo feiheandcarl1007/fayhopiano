@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fay Ho (何老师) | 专业钢琴教育中心 - V7 Portfolio</title>
+    <style>
+        /* 全局样式重置与基础设定 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, 'Microsoft YaHei', sans-serif;
+            line-height: 1.7;
+            color: #333333;
+            background-color: #fcfbfa;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #b5945b;
+            transition: color 0.3s;
+        }
+        a:hover {
+            color: #d4b26f;
+        }
+
+        /* 顶部导航栏 */
+        header {
+            background-color: #112233;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #b5945b;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: block;
+            overflow: hidden;
+            padding: 15px 20px;
+        }
+        .logo {
+            float: left;
+            font-size: 22px;
+            font-weight: bold;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+        .logo span {
+            color: #b5945b;
+        }
+        .nav-links {
+            float: right;
+            list-style: none;
+            margin-top: 5px;
+        }
+        .nav-links li {
+            display: inline-block;
+            margin-left: 25px;
+        }
+        .nav-links a {
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        .nav-links a:hover {
+            color: #b5945b;
+        }
+
+        /* 主视觉区 (Hero Section) */
+        .hero {
+            background: linear-gradient(rgba(17, 34, 51, 0.9), rgba(17, 34, 51, 0.98)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23112233"/><text x="50%" y="50%" font-size="5" fill="%23ffffff" fill-opacity="0.1" text-anchor="middle">PIANO &amp; ART</text><path d="M10,80 C30,60 70,100 90,80" stroke="%23b5945b" stroke-opacity="0.2" stroke-width="0.5" fill="none"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            padding: 120px 20px;
+            border-bottom: 5px solid #b5945b;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .hero-text {
+            width: 60%;
+            text-align: left;
+            padding-right: 40px;
+        }
+        .hero-text h1 {
+            font-size: 44px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        .hero-text p {
+            font-size: 18px;
+            color: #dfdfdf;
+            margin-bottom: 35px;
+            text-align: justify;
+        }
+        
+        /* 教师照片占位符样式 */
+        .hero-photo-wrapper {
+            width: 35%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .teacher-photo-placeholder {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background-color: #1a3a5a;
+            border: 8px solid rgba(181, 148, 91, 0.3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+        }
+        .teacher-photo-placeholder span {
+            color: rgba(255,255,255,0.4);
+            font-size: 14px;
+            text-align: center;
+            padding: 20px;
+        }
+        .photo-halo {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            border: 2px solid #b5945b;
+            opacity: 0.5;
+            z-index: 1;
+        }
+
+        .btn-contact {
+            display: inline-block;
+            background-color: #b5945b;
+            color: #ffffff;
+            padding: 14px 40px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .btn-contact:hover {
+            background-color: #ccaa6d;
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* 通用区块样式 */
+        .section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 90px 20px;
+            overflow: hidden;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 30px;
+            color: #112233;
+            margin-bottom: 60px;
+            position: relative;
+            font-weight: 600;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: #b5945b;
+            margin: 15px auto 0 auto;
+        }
+
+        /* 关于我与教学理念 */
+        .about-row {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+        .about-col {
+            display: table-cell;
+            vertical-align: top;
+            width: 50%;
+        }
+        .about-content {
+            padding-right: 40px;
+        }
+        .philosophy-box {
+            background-color: #f4f6f8;
+            border-left: 4px solid #b5945b;
+            padding: 22px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        .special-care-box {
+            background-color: #fcf6eb;
+            border-left: 4px solid #d4a356;
+            padding: 22px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        .vendor-box {
+            background-color: #f0f7f4;
+            border: 1px solid #c3e6cb;
+            border-left: 4px solid #28a745;
+            padding: 22px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        /* V7 新增：语言服务区块样式 */
+        .language-box {
+            background-color: #edf2f7;
+            border-left: 4px solid #4a5568;
+            padding: 22px;
+            border-radius: 4px;
+        }
+        .philosophy-box h3, .special-care-box h3, .vendor-box h3, .language-box h3 {
+            color: #112233;
+            margin-bottom: 10px;
+            font-size: 19px;
+        }
+        .about-text p {
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+
+        /* 结构化教学内容 */
+        .method-section {
+            padding: 50px 30px;
+            background-color: #ffffff;
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            margin-top: 40px;
+        }
+        .method-title {
+            font-size: 20px;
+            color: #112233;
+            font-weight: bold;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eeeeee;
+            padding-bottom: 12px;
+        }
+        .method-list {
+            list-style: none;
+        }
+        .method-list li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+            font-size: 15px;
+        }
+        .method-list li::before {
+            content: '✓';
+            color: #b5945b;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* 大赛奖项表 */
+        .bg-light {
+            background-color: #f7f5f2;
+            border-top: 1px solid #eaeaea;
+            border-bottom: 1px solid #eaeaea;
+        }
+        .awards-table, .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .awards-table th, .awards-table td, .pricing-table th, .pricing-table td {
+            padding: 18px 25px;
+            text-align: left;
+            border-bottom: 1px solid #eeeeee;
+            font-size: 15px;
+        }
+        .awards-table th, .pricing-table th {
+            background-color: #112233;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .awards-table tr:nth-child(even), .pricing-table tr:nth-child(even) {
+            background-color: #fcfcfc;
+        }
+
+        /* 学费价格大字 */
+        .price-grid-title {
+            font-size: 20px;
+            color: #112233;
+            font-weight: bold;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .price-grid-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 18px;
+            background-color: #b5945b;
+            margin-right: 10px;
+        }
+        .price-grid-title.special::before {
+            background-color: #28a745;
+        }
+        .price-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #b5945b;
+        }
+        .price-text.special-color {
+            color: #28a745;
+        }
+        .price-period {
+            font-size: 14px;
+            color: #777777;
+            font-weight: normal;
+        }
+
+        /* 核心优势 */
+        .skills-grid {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            margin-top: 25px;
+        }
+        .skill-card {
+            display: table-cell;
+            width: 25%;
+            padding: 0 12px;
+            text-align: center;
+        }
+        .card-inner {
+            background-color: #ffffff;
+            padding: 35px 20px;
+            border-radius: 6px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border-top: 3px solid #b5945b;
+            height: 100%;
+        }
+        .card-inner h3 {
+            color: #112233;
+            margin-bottom: 18px;
+            font-size: 18px;
+        }
+        .card-inner ul {
+            list-style: none;
+            text-align: left;
+            display: inline-block;
+        }
+        .card-inner ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 18px;
+            font-size: 14px;
+        }
+        .card-inner ul li::before {
+            content: '•';
+            color: #b5945b;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* 教育背景 */
+        .timeline {
+            max-width: 850px;
+            margin: 0 auto;
+            position: relative;
+            padding-left: 35px;
+            border-left: 2px solid #e0e0e0;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 45px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -42px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #b5945b;
+            border: 4px solid #ffffff;
+            box-shadow: 0 0 0 3px #b5945b;
+        }
+        .timeline-date {
+            font-weight: bold;
+            color: #b5945b;
+            font-size: 15px;
+            margin-bottom: 6px;
+        }
+        .timeline-title {
+            font-size: 19px;
+            color: #112233;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        .timeline-sub {
+            font-style: italic;
+            color: #666666;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        /* 联系方式 */
+        .contact-info {
+            max-width: 650px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .contact-item {
+            margin-bottom: 20px;
+            font-size: 17px;
+        }
+        .contact-item strong {
+            color: #112233;
+        }
+        
+        /* 电话和邮箱的可点击高亮样式 */
+        .interactive-link {
+            color: #b5945b;
+            font-weight: bold;
+            border-bottom: 1px dashed #b5945b;
+            padding-bottom: 2px;
+        }
+        .interactive-link:hover {
+            color: #112233;
+            border-bottom: 1px solid #112233;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #112233;
+            color: #aaaaaa;
+            text-align: center;
+            padding: 40px 20px;
+            font-size: 14px;
+            border-top: 1px solid #223344;
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 950px) {
+            .hero-container {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .hero-text {
+                width: 100%;
+                padding-right: 0;
+                margin-top: 40px;
+                text-align: center;
+            }
+            .hero-text p {
+                text-align: center;
+            }
+            .hero-photo-wrapper {
+                width: 100%;
+            }
+            .skills-grid {
+                display: block;
+            }
+            .skill-card {
+                display: block;
+                width: 100%;
+                margin-bottom: 25px;
+                padding: 0;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                float: none;
+                text-align: center;
+                margin-top: 15px;
+            }
+            .nav-links li {
+                margin: 0 12px;
+            }
+            .logo {
+                float: none;
+                text-align: center;
+            }
+            .about-col {
+                display: block;
+                width: 100%;
+            }
+            .about-content {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+            .hero-text h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航栏 -->
+    <header>
+        <div class="nav-container clearfix">
+            <div class="logo">Fay Ho <span>钢琴艺术工作室</span></div>
+            <ul class="nav-links">
+                <li><a href="#about">关于老师</a></li>
+                <li><a href="#awards">教学荣誉</a></li>
+                <li><a href="#skills">核心优势</a></li>
+                <li><a href="#pricing">课程学费</a></li>
+                <li><a href="#experience">教育履历</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- 主视觉海报区 -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-text">
+                <h1>用音符启迪智慧<br>用专业与爱成就梦想</h1>
+                <p>毕业于国内知名音乐学院及美国旧金山艺术大学（MA），深耕钢琴教育10余年。提供**普通话/广东话/英文三语无缝切换授课**。面向常规学员（提供高性价比上门授课）及特殊儿童（拥有合法执照可签Vendor协议）提供全方位高水准双语钢琴教学。</p>
+                <a href="#contact" class="btn-contact">预约上门试听 / 咨询</a>
+            </div>
+            
+            <div class="hero-photo-wrapper">
+                <div class="photo-halo"></div>
+                <div class="teacher-photo-placeholder">
+                    <span>此处放置教师照片<br>(image_8.png)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 个人简介与教学理念 -->
+    <section id="about" class="section">
+        <h2 class="section-title">关于何老师 (Ms. Fay)</h2>
+        <div class="about-row">
+            <div class="about-col">
+                <div class="about-content about-text">
+                    <p>何老师（Ms. Fay）出生于崇高的<strong>音乐世家</strong>，母亲毕业于著名的<strong>星海音乐学院声乐系</strong>。何老师自<strong>5岁起便正式涉足钢琴</strong>，展现出过人的艺术天赋。18岁时，她以优异的成绩被国内顶尖的<strong>四川音乐学院</strong>全日制本科音乐表演（钢琴）专业录取。26岁那年，她远赴美国深造，最终获得<strong>旧金山艺术大学（AAU）音乐硕士学位（Master of Arts in Piano Performance）</strong>。</p>
+                    <p>作为一名拥有<strong>超过10年一线教学经验</strong>的资深钢琴教师，何老师成功指导过数百名学员。她的学生群体主要由常规正常学习钢琴的英才组成，涵盖学龄前启蒙、青少年业余考级/备赛以及成人兴趣进修。同时，她也是湾区极为罕见的、在特殊教育领域拥有深厚声誉的专家。</p>
+                </div>
+            </div>
+            <div class="about-col">
+                <div class="philosophy-box">
+                    <h3>💡 专业的常规与启发式教学</h3>
+                    <p style="font-size: 14px; color: #555;">针对常规学生，何老师注重基本功的科学严谨训练（触键、手型、乐理）和多元曲目的涉猎。性格开朗阳光的她极其擅长运用心理学，全面提高孩子的音乐内驱力。</p>
+                </div>
+                
+                <div class="special-care-box">
+                    <h3>🌟 卓越的特殊儿童（自闭症）特色教学</h3>
+                    <p style="font-size: 14px; color: #555; text-align: justify;">除常规教学外，何老师目前正倾心教学5位患有自闭症（Autism）的学生。针对特殊儿童对色彩和数字的敏锐天赋，通过独创研发的视听感知教学法，成功帮助他们打开音乐世界的大门。</p>
+                </div>
+
+                <div class="vendor-box">
+                    <h3>✅ 政府资助与官方签约资质</h3>
+                    <p style="font-size: 14.5px; color: #1e5a32; text-align: justify; font-weight: 500;">
+                        本工作室拥有合法的<strong>营业执照（Business License）</strong>。我们非常欢迎并**可以与自闭症特殊儿童家长签署 Vendor 官方合作协议**，全力协助家庭对接区域中心（Regional Center）的学费资助。
+                    </p>
+                </div>
+
+                <!-- V7 新增：多语种服务区块 -->
+                <div class="language-box">
+                    <h3>🗣️ 尊享全方位多语种服务</h3>
+                    <p style="font-size: 14.5px; color: #2d3748; text-align: justify; font-weight: 500;">
+                        为了确保最完美的沟通效果，何老师提供纯正的<strong>普通话（Mandarin）</strong>、<strong>广东话（Cantonese）</strong>和流利<strong>英文（English）</strong>教学服务。完美兼顾中西方家长的沟通偏好及孩子的语言习惯。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 规范化教学内容 -->
+        <div class="method-section">
+            <div class="method-title">📋 规范化、系统化的全方位教学内容</div>
+            <ul class="method-list">
+                <li><strong>🚗 贴心上门授课 (In-Home Lessons)：</strong>支持南旧金山及周边城市上门面授，让孩子在最熟悉的家庭环境中高效、安心学琴，免去家长接送奔波之苦。</li>
+                <li><strong>🗣️ 三语教学切换：</strong>乐理、指法与情感引导可自由无缝采用普通话、粤语、英语双语或三语贯穿，满足各种家庭语言背景需求。</li>
+                <li><strong>全面素养培养：</strong>课程全面涵盖钢琴演奏（Performance）、古典乐理（Music Theory）、视唱练耳（Sight-reading & Ear training）。</li>
+                <li><strong>全闭环教学管理：</strong>从精心设计是个性化教案（Lesson Plans），到组织筹备独奏会（Recitals）、专业比赛（Competitions）和分级考试（Examinations）。</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 教学荣誉与学生获奖 -->
+    <section id="awards" class="section bg-light" style="max-width:100%; width:100%;">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+            <h2 class="section-title">卓越教学成果 <span>•</span> 学生荣誉榜</h2>
+            <p style="text-align: center; margin-top: -30px; margin-bottom: 45px; color: #666; font-size: 16px;">在何老师的悉心指导下，多位常规学生在国际及国家级顶尖赛事中摘得桂冠：</p>
+            
+            <table class="awards-table">
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">年份</th>
+                        <th style="width: 45%;">赛事/活动名称</th>
+                        <th style="width: 40%;">学生获奖荣誉</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>2024年</strong></td>
+                        <td>旧金山湾区钢琴比赛 (USOMC)</td>
+                        <td>小学组共4人参赛，斩获 <strong>2项第一名（一等奖）</strong> 及 2项第四名</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2021年</strong></td>
+                        <td>旧金山湾区钢琴比赛 (USOMC)</td>
+                        <td>中学组共3人参赛，包揽 <strong>第一名（一等奖）</strong> 与 第三名</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2019年</strong></td>
+                        <td>第15届全国校园艺术人才大赛</td>
+                        <td>中学组3名学生荣获 <strong>一等奖（First Prize）</strong>；另有1名高校学生摘得 <strong>大学组金奖</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>2018年</strong></td>
+                        <td>第14届全国校园艺术人才大赛</td>
+                        <td>小学组2名学生分别荣获 <strong>一等奖与二等奖</strong>；另有1名高校学生摘得 <strong>大学组金奖</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- 核心优势与技能 -->
+    <section id="skills" class="section">
+        <h2 class="section-title">全方位技能与教学核心优势</h2>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="card-inner">
+                    <h3>🎹 乐器造诣与理论</h3>
+                    <ul>
+                        <li><strong>钢琴演奏 (10+年)：</strong>科班出身，大师级基本功</li>
+                        <li><strong>核心乐理：</strong>深厚基础，化繁为简</li>
+                        <li><strong>中国传统乐器：</strong>精通古筝与二胡</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="card-inner">
+                    <h3>🏫 贴心上门与数字化</h3>
+                    <ul>
+                        <li><strong>专业上门面授：</strong>贴心高效，免家长奔波</li>
+                        <li><strong>科学课程开发：</strong>系统化阶梯教学</li>
+                        <li><strong>远程Zoom授课：</strong>跨越地域，高效互动</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="card-inner">
+                    <h3>🌟 双轨特色教学</h3>
+                    <ul>
+                        <li><strong>常规精英教育：</strong>全面拔高，成果卓越</li>
+                        <li><strong>自闭症特色教学：</strong>独创视觉/数字引导</li>
+                        <li><strong>支持签约对接：</strong>可与特殊儿童家长签 Vendor</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="skill-card">
+                <div class="card-inner">
+                    <h3>🗣️ 顶级语言与沟通</h3>
+                    <ul>
+                        <li><strong>普通话母语：</strong>标准清晰，极具亲和力</li>
+                        <li><strong>正宗广东话：</strong>无缝沟通粤语家庭/学员</li>
+                        <li><strong>流利纯正英文：</strong>专业术语，美式思维对接</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 课程设置与学费明细 -->
+    <section id="pricing" class="section bg-light" style="max-width:100%; width:100%;">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+            <h2 class="section-title">课程设置与收费标准</h2>
+            <p style="text-align: center; margin-top: -30px; margin-bottom: 25px; color: #666; font-size: 16px;">何老师秉持透明、规范的收费原则，所有课程均提供**普通话/粤语/英语三语服务**，并支持**上门教学**：</p>
+            
+            <!-- 类别一：常规正常学生收费标准 -->
+            <div class="price-grid-title">🎹 常规学员专业钢琴课程（支持上门面授）</div>
+            <table class="pricing-table" style="margin-top:0; margin-bottom:35px;">
+                <thead>
+                    <tr>
+                        <th style="width: 30%;">单节课时长</th>
+                        <th style="width: 35%;">课程特色</th>
+                        <th style="width: 35%;">单节学费标准 (Per Lesson)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>30 分钟 / 节</strong></td>
+                        <td>适合幼童兴趣启蒙及手型基本功入门</td>
+                        <td><span class="price-text">$55</span> <span class="price-period">/ 节</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>45 分钟 / 节</strong></td>
+                        <td>黄金课时，兼顾指法技术与考级曲目精修</td>
+                        <td><span class="price-text">$75</span> <span class="price-period">/ 节</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>60 分钟 / 节</strong></td>
+                        <td>适合中高阶、备赛或高级别考级突击学员</td>
+                        <td><span class="price-text">$100</span> <span class="price-period">/ 节</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 类别二：自闭症特殊儿童包月包课标准 -->
+            <div class="price-grid-title special">🌟 自闭症儿童定制特色课程（支持与家长签署 Vendor 协议）</div>
+            <table class="pricing-table" style="margin-top:0;">
+                <thead>
+                    <tr>
+                        <th style="width: 30%;">单节课时长</th>
+                        <th style="width: 35%;">服务特色</th>
+                        <th style="width: 35%;">学费标准 (Tuition Package)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>30 分钟 / 节</strong></td>
+                        <td>定制视听感知教学，色彩与数字敏锐度激发</td>
+                        <td><span class="price-text special-color">$270</span> <span class="price-period">/ 每月 (4节)</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>45 分钟 / 节</strong></td>
+                        <td>专属定制个性化教案，心理引导与指尖练习闭环</td>
+                        <td><span class="price-text special-color">$380</span> <span class="price-period">/ 每月 (4节)</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>60 分钟 / 节</strong></td>
+                        <td>深度音乐舒缓与专业钢琴技能进阶综合训练</td>
+                        <td><span class="price-text special-color">$480</span> <span class="price-period">/ 每月 (4节)</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size:13.5px; color:#28a745; margin-top:20px; text-align:right; font-weight:500;">* 拥有合法的 Business License，自闭症家庭学费完全支持通过加州区域中心政府福利进行报销结算。</p>
+        </div>
+    </section>
+
+    <!-- 履历与教育 -->
+    <section id="experience" class="section">
+        <h2 class="section-title">教育背景与从业经历</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">2016年1月 - 至今</div>
+                <div class="timeline-title">资深钢琴导师</div>
+                <div class="timeline-sub">The Piano Place - 旧金山, CA</div>
+                <p style="font-size: 15px; color: #555;">全面负责常规与特教私教课程，全权统筹常规学员的独奏音乐会、考级及国际大赛申报与集训。</p>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">2018年 - 2020年</div>
+                <div class="timeline-title">钢琴演奏 硕士学位 (Master of Arts in Piano Performance)</div>
+                <div class="timeline-sub">Academy of Art University (旧金山艺术大学) - 旧金山, CA</div>
+                <p style="font-size: 15px; color: #555;">深造高级钢琴演奏技巧、舞台综合心理学及欧美现代音乐教学系统。</p>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">本科阶段</div>
+                <div class="timeline-title">音乐表演（钢琴全日制本科）学士学位</div>
+                <div class="timeline-sub">四川音乐学院 (Sichuan Conservatory of Music)</div>
+                <p style="font-size: 15px; color: #555;">接受顶尖且严苛的音乐学院正统训练，主修钢琴演奏，奠定了指尖技术基础。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section id="contact" class="section bg-light" style="max-width:100%; width:100%;">
+        <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+            <h2 class="section-title">开启您的音乐旅程</h2>
+            <div class="contact-info">
+                <p style="margin-bottom: 25px; font-size: 16px; color: #555;">常规钢琴教学、贴心上门面授、自闭症儿童定制辅导。何老师提供高品质普通话、粤语、英语三语服务，欢迎随时咨询联系！</p>
+                <div class="contact-item">
+                    <strong>📍 授课方式：</strong> South San Francisco, CA 94080 (支持旧金山湾区**上门面授** / 教师工作室面授 / Zoom全球网课)
+                </div>
+                <div class="contact-item">
+                    <strong>📧 电子邮箱：</strong> <a href="mailto:feihe955@gmail.com" class="interactive-link">feihe955@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <strong>📞 咨询电话：</strong> <a href="tel:8186175321" class="interactive-link">818-617-5321</a> <span style="font-size:12px; color:#888;">(点击可直接拨打)</span>
+                </div>
+                
+                <div style="margin-top: 35px; border-top: 1px dashed #e0e0e0; padding-top: 25px; font-size: 13px; color: #666; text-align: left;">
+                    <p style="color: #28a745; font-weight: bold; margin-bottom: 10px;">📜 机构资质、语言与资助说明：</p>
+                    <p style="line-height: 1.6; font-size: 13.5px; margin-bottom: 15px; color:#444;">本钢琴工作室依法在本地纳税并持有有效的 <strong>Business License</strong>。支持<strong>普通话、广东话、英文</strong>三语自由教学，沟通顺畅高效。针对自闭症特殊教育家庭，完全具备<strong>与家长签署 Vendor 报销合作协议</strong>的法定资格，可无缝对接加州区域中心政府福利项目。</p>
+                    
+                    <p><strong>🏛️ 教学工作室行业推荐与合作参考（References）：</strong></p>
+                    <ul style="margin-left: 18px; margin-top: 10px; line-height: 1.6;">
+                        <li>1. Ting Luo Piano Performance Studio (ltingarts.com)</li>
+                        <li>2. Vibo Music School (vibomusic.com)</li>
+                        <li>3. Lycee Francais de San Francisco</li>
+                        <li>4. Hanlin Academy (hanlinacademy.co)</li>
+                        <li>5. Music Land of Millbrae</li>
+                    </ul>
+                </div>
+                <p style="margin-top: 20px; font-size: 12px; color: #999;">* 拥有合法的美国 work authorization 及有效加州驾照。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>&copy; 2026 Fay Ho Piano Studio. All Rights Reserved.</p>
+        <p style="font-size: 12px; color: #666; margin-top: 5px;">Designed with excellence for Ms. Fay Ho.</p>
+    </footer>
+
+</body>
+</html>
